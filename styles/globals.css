@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.nav, .sch , .sidebar{
+  background-color: #1f1e1e9a;
+}
+
+.mini-nav{
+  overflow-x: hidden;
+  width: 92.4vw;
+  background-color: #1f1e1e9a;
+}
+
+.mini-nav .links a{ 
+  background-color: #1f1e1e9a;
+
+}
+
+.mini-styles{
+  @apply px-6 rounded-full py-1  shadow transition;
+}
+
+.minutes{ 
+ position: relative;
+ left: 90%;
+ bottom: 2.5rem;
+ color: white;
+
+}
+
+/* .input-name::after{
+ content: 'Email or Phone';
+ color: blue;
+ position: absolute;
+ bottom: 3.4rem;
+ left: .9rem;
+ font-size: 14px;
+ z-index: 500;
+} */
