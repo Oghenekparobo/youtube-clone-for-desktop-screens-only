@@ -7,12 +7,12 @@ import Link from "next/link";
 export default function SideBar() {
   return (
     <div className="">
-      <div className="flex sidebar flex-col w-26  h-screen space-y-10">
+      <div className="flex sidebar flex-col w-26  h-screen space-y-10 cursor-pointer">
         <div className="home">
           <span className="text-white">
             <AiFillHome />
           </span>
-          Home
+          <Link href="/"> Home</Link>
         </div>
 
         <div className="explore">

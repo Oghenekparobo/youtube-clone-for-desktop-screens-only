@@ -132,7 +132,7 @@ export default function Navbar() {
             </span>
             <span>{session.user.name}</span>
             <a
-              href=""
+              href="api/auth/signout"
               className="flex rounded hover:text-blue-900 text-blue-500 border border-blue-500 py-0.5 px-2 hover:bg-blue-300 transition"
             >
               <svg

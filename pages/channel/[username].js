@@ -9,11 +9,18 @@ import Head from "next/head";
 import LoadMore from "lib/config";
 import { useState } from "react";
 import { amount } from "lib/config";
-import { getSubscribersCount , isSubscribed} from "lib/data";
+import { getSubscribersCount, isSubscribed } from "lib/data";
 import { useSession, getSession } from "next-auth/react";
 import SideBar from "pages/components/SideBar";
+import dynamic from "next/dynamic";
+const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
-export default function Channel({ user, initialVideos, subscribers, subscribed}) {
+export default function Channel({
+  user,
+  initialVideos,
+  subscribers,
+  subscribed,
+}) {
   const [videos, setVideos] = useState(initialVideos);
   const [loadmore, showLoadmore] = useState(videos.length < amount);
   const { data: session, status } = useSession();
@@ -65,7 +72,13 @@ export default function Channel({ user, initialVideos, subscribers, subscribed})
 
                     <div className="">
                       {session && user.id === session.user.id ? (
-                        <></>
+                        <>
+                          <Link href={`/upload`}>
+                            <a className="bg-green-500 px-3 py-2  rounded-md">
+                              Upload new video
+                            </a>
+                          </Link>
+                        </>
                       ) : (
                         <SubscribedButton user={user} subscribed={subscribed} />
                       )}
@@ -75,17 +88,19 @@ export default function Channel({ user, initialVideos, subscribers, subscribed})
               </div>
             </div>
           </div>
-          <div>
+          <div className="" w-full>
             {videos.map((video, index) => (
               <div className="px-4 py-8" key={index}>
                 <div className="thumbnail-minutes">
-                  <div className="">
+                  <div className="w-fit">
                     {video.thumbnail && (
                       <Link href={`/video/${video.id}`}>
-                        <Image
-                          src={video.thumbnail}
-                          width="1400"
-                          height="1000"
+                        <ReactPlayer
+                          className="react-player"
+                          url={video.url}
+                          width="2000%"
+                          controls={true}
+                          light={video.thumbnail}
                         />
                       </Link>
                     )}
@@ -124,7 +139,7 @@ export default function Channel({ user, initialVideos, subscribers, subscribed})
                       </p>
                     </Link>
                     <p>
-                   <span>{video.views} Views·</span>   
+                      <span>{video.views} Views·</span>
                       <span>{timeago.format(new Date(video.createdAt))}</span>
                     </p>
                   </div>
@@ -169,7 +184,7 @@ export async function getServerSideProps(context) {
       initialVideos: videos,
       user,
       subscribers,
-      subscribed
+      subscribed,
     },
   };
 }

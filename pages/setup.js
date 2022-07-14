@@ -86,7 +86,7 @@ export default function Setup() {
                     className="border   border-blue-700 w-full py-2 outline-none hover:border-blue-800 transition"
                     required
                   />
-                  <p className=" text-blue-700">Forgot username?</p>
+                  <p className=" text-blue-700">username</p>
                 </div>
 
                 <div className="text-sm text-gray-600 ">

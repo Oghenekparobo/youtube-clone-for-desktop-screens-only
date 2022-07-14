@@ -13,7 +13,7 @@ export default function Header({ videos, setVideos , subscriptions}) {
       <MiniNav />
       <div className="">
         {videos.length === 0 && (
-          <p className="flex justify-center mt-20">No videos found!</p>
+          <p className="flex justify-center mt-20">No videos found!</p> 
         )}
 
         <div className="grid grid-cols-3 px-4 ">
